@@ -41,7 +41,7 @@ const productShowcaseSlides = [
     badge: "CCTV Solutions",
     title: "AI-Ready IP Surveillance",
     description: "High-resolution monitoring with on-device analytics, mobile access, and hybrid storage options.",
-    image: heroTech1,
+    image: heroTech3,
     features: [
       "4K low-light sensors",
       "Instant mobile alerts",
@@ -52,7 +52,7 @@ const productShowcaseSlides = [
     badge: "IT Infrastructure",
     title: "Structured Cabling & Fiber",
     description: "Precision installed cabling that keeps your data, voice, and building systems performing at peak speed.",
-    image: heroTech3,
+    image: heroTech1,
     features: [
       "CAT6/CAT7 certified",
       "Up to 100G fiber",
