@@ -11,7 +11,7 @@ import { LoadingWrapper, StaggeredLoadingWrapper } from '@/components/LoadingWra
 import { ContactCardSkeleton, FormSkeleton } from '@/components/LoadingSkeletons';
 import { TypewriterText, FadeInText } from '@/components/AnimatedText';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
+
 
 const Contact = () => {
   const { toast } = useToast();
@@ -33,15 +33,29 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: formData
-      });
+      // Construct mailto link
+      const subject = `New Contact Request from ${formData.firstName} ${formData.lastName}`;
+      const body = `
+Name: ${formData.firstName} ${formData.lastName}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Company: ${formData.company}
+Industry: ${formData.industry}
+Service Interest: ${formData.serviceInterest}
+Timeline: ${formData.timeline}
 
-      if (error) throw error;
+Project Details:
+${formData.projectDetails}
+      `.trim();
+
+      const mailtoLink = `mailto:sales@microfasttech.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      // Open email client
+      window.location.href = mailtoLink;
 
       toast({
-        title: "Message Sent!",
-        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+        title: "Opening Email Client",
+        description: "Please send the pre-filled email to complete your request.",
       });
 
       // Reset form
@@ -57,10 +71,10 @@ const Contact = () => {
         timeline: ''
       });
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('Error opening email client:', error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again or contact us directly.",
+        description: "Failed to open email client. Please try again or contact us directly.",
         variant: "destructive",
       });
     } finally {
@@ -91,7 +105,7 @@ const Contact = () => {
 
   const services = [
     "CCTV Surveillance Systems",
-    "PBX Communication Systems", 
+    "PBX Communication Systems",
     "Structured Network Cabling",
     "IT Infrastructure & Custom PCs",
     "General Consultation"
@@ -127,15 +141,15 @@ const Contact = () => {
       <section className="py-20 bg-gradient-to-r from-primary to-primary-light animate-slideInFromLeft">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl lg:text-6xl font-bold text-white mb-6">
-            <TypewriterText 
-              text="Get In Touch" 
+            <TypewriterText
+              text="Get In Touch"
               delay={100}
               speed={40}
               className="text-white"
             />
           </h1>
           <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
-            <FadeInText 
+            <FadeInText
               text="Ready to upgrade your technology? Contact us for a consultation and customized solution."
               delay={800}
               className="text-white"
@@ -168,7 +182,7 @@ const Contact = () => {
                 staggerDelay={200}
                 index={index}
               >
-                <Card 
+                <Card
                   className="h-full text-center hover:shadow-lg transition-shadow cursor-pointer card-red-hover-animation gradient-border-red"
                   onClick={() => {
                     if (info.title === "Email") {
@@ -233,141 +247,141 @@ const Contact = () => {
               delay={1200}
             >
 
-            <Card className="shadow-lg gradient-border-red">
-              <CardContent className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-red-dark">First Name *</label>
-                      <Input 
-                        required
-                        value={formData.firstName}
-                        onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-                        placeholder="Enter your first name" 
-                        className="h-12 focus:ring-red" 
-                      />
+              <Card className="shadow-lg gradient-border-red">
+                <CardContent className="p-8">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-red-dark">First Name *</label>
+                        <Input
+                          required
+                          value={formData.firstName}
+                          onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                          placeholder="Enter your first name"
+                          className="h-12 focus:ring-red"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-red-dark">Last Name *</label>
+                        <Input
+                          required
+                          value={formData.lastName}
+                          onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                          placeholder="Enter your last name"
+                          className="h-12 focus:ring-red"
+                        />
+                      </div>
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-red-dark">Last Name *</label>
-                      <Input 
-                        required
-                        value={formData.lastName}
-                        onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-                        placeholder="Enter your last name" 
-                        className="h-12 focus:ring-red" 
-                      />
-                    </div>
-                  </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-red-dark">Email *</label>
-                      <Input 
-                        required
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
-                        placeholder="your.email@company.com" 
-                        className="h-12 focus:ring-red" 
-                      />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-red-dark">Email *</label>
+                        <Input
+                          required
+                          type="email"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          placeholder="your.email@company.com"
+                          className="h-12 focus:ring-red"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-red-dark">Phone</label>
+                        <Input
+                          type="tel"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          placeholder="+1 (555) 000-0000"
+                          className="h-12 focus:ring-red"
+                        />
+                      </div>
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-red-dark">Phone</label>
-                      <Input 
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                        placeholder="+1 (555) 000-0000" 
-                        className="h-12 focus:ring-red" 
-                      />
-                    </div>
-                  </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-red-dark">Company Name</label>
-                      <Input 
-                        value={formData.company}
-                        onChange={(e) => setFormData({...formData, company: e.target.value})}
-                        placeholder="Your company name" 
-                        className="h-12 focus:ring-red" 
-                      />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-red-dark">Company Name</label>
+                        <Input
+                          value={formData.company}
+                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                          placeholder="Your company name"
+                          className="h-12 focus:ring-red"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-red-dark">Industry</label>
+                        <Select value={formData.industry} onValueChange={(value) => setFormData({ ...formData, industry: value })}>
+                          <SelectTrigger className="h-12 focus:ring-red">
+                            <SelectValue placeholder="Select your industry" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {industries.map((industry) => (
+                              <SelectItem key={industry} value={industry.toLowerCase().replace(/\s+/g, '-')}>
+                                {industry}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
+
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-red-dark">Industry</label>
-                      <Select value={formData.industry} onValueChange={(value) => setFormData({...formData, industry: value})}>
+                      <label className="text-sm font-medium text-red-dark">Service Interest</label>
+                      <Select value={formData.serviceInterest} onValueChange={(value) => setFormData({ ...formData, serviceInterest: value })}>
                         <SelectTrigger className="h-12 focus:ring-red">
-                          <SelectValue placeholder="Select your industry" />
+                          <SelectValue placeholder="Select the service you're interested in" />
                         </SelectTrigger>
                         <SelectContent>
-                          {industries.map((industry) => (
-                            <SelectItem key={industry} value={industry.toLowerCase().replace(/\s+/g, '-')}>
-                              {industry}
+                          {services.map((service) => (
+                            <SelectItem key={service} value={service.toLowerCase().replace(/\s+/g, '-')}>
+                              {service}
                             </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                     </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-red-dark">Service Interest</label>
-                    <Select value={formData.serviceInterest} onValueChange={(value) => setFormData({...formData, serviceInterest: value})}>
-                      <SelectTrigger className="h-12 focus:ring-red">
-                        <SelectValue placeholder="Select the service you're interested in" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {services.map((service) => (
-                          <SelectItem key={service} value={service.toLowerCase().replace(/\s+/g, '-')}>
-                            {service}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-red-dark">Project Details</label>
+                      <Textarea
+                        value={formData.projectDetails}
+                        onChange={(e) => setFormData({ ...formData, projectDetails: e.target.value })}
+                        placeholder="Please describe your project requirements and any specific needs..."
+                        className="min-h-[120px] focus:ring-red"
+                      />
+                    </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-red-dark">Project Details</label>
-                    <Textarea 
-                      value={formData.projectDetails}
-                      onChange={(e) => setFormData({...formData, projectDetails: e.target.value})}
-                      placeholder="Please describe your project requirements and any specific needs..."
-                      className="min-h-[120px] focus:ring-red"
-                    />
-                  </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-red-dark">Timeline</label>
+                      <Select value={formData.timeline} onValueChange={(value) => setFormData({ ...formData, timeline: value })}>
+                        <SelectTrigger className="h-12 focus:ring-red">
+                          <SelectValue placeholder="When do you need this completed?" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="asap">ASAP</SelectItem>
+                          <SelectItem value="1-month">Within 1 month</SelectItem>
+                          <SelectItem value="3-months">Within 3 months</SelectItem>
+                          <SelectItem value="6-months">Within 6 months</SelectItem>
+                          <SelectItem value="planning">Just planning ahead</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium text-red-dark">Timeline</label>
-                    <Select value={formData.timeline} onValueChange={(value) => setFormData({...formData, timeline: value})}>
-                      <SelectTrigger className="h-12 focus:ring-red">
-                        <SelectValue placeholder="When do you need this completed?" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="asap">ASAP</SelectItem>
-                        <SelectItem value="1-month">Within 1 month</SelectItem>
-                        <SelectItem value="3-months">Within 3 months</SelectItem>
-                        <SelectItem value="6-months">Within 6 months</SelectItem>
-                        <SelectItem value="planning">Just planning ahead</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={isSubmitting}
+                      className="w-full h-12 text-lg bg-red text-white hover:bg-red-dark btn-red-hover"
+                    >
+                      <Send className="w-5 h-5 mr-2" />
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </Button>
 
-                  <Button 
-                    type="submit" 
-                    size="lg" 
-                    disabled={isSubmitting}
-                    className="w-full h-12 text-lg bg-red text-white hover:bg-red-dark btn-red-hover"
-                  >
-                    <Send className="w-5 h-5 mr-2" />
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                  </Button>
-
-                  <p className="text-sm text-muted-foreground text-center">
-                    By submitting this form, you agree to our privacy policy. We'll only use your information to respond to your inquiry.
-                  </p>
-                </form>
-              </CardContent>
-            </Card>
+                    <p className="text-sm text-muted-foreground text-center">
+                      By submitting this form, you agree to our privacy policy. We'll only use your information to respond to your inquiry.
+                    </p>
+                  </form>
+                </CardContent>
+              </Card>
             </LoadingWrapper>
           </div>
         </div>
