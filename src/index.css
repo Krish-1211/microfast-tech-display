@@ -1,0 +1,464 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* MicroFast Tech Design System - Professional Blue & Grey Theme (HSL only) */
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Professional Blue & Grey Theme */
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 213 94% 68%;
+    --primary-dark: 224 76% 48%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8.9% 46.1%;
+
+    --accent: 220 14% 96%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+  /* Red accent colors for text - now primary text color */
+  --red-primary: 0 100% 50%;
+  --red-light: 0 100% 50%;
+  --red-dark: 0 100% 50%;
+  --red-muted: 0 100% 95%;
+  
+  /* Override foreground colors to use red */
+  --foreground: 0 100% 50%;
+  --card-foreground: 0 100% 50%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.75rem;
+
+    /* Custom Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary-dark)), hsl(var(--primary)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--secondary)));
+    --gradient-red: linear-gradient(135deg, hsl(var(--red-dark)), hsl(var(--red-primary)));
+
+    /* Custom Shadows */
+    --shadow-soft: 0 4px 20px -2px hsl(var(--primary) / 0.1);
+    --shadow-blue: 0 8px 32px -4px hsl(var(--primary) / 0.2);
+    --shadow-red: 0 8px 32px -4px hsl(var(--red-primary) / 0.2);
+
+    /* Typography */
+    --font-heading: 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+
+    /* Sidebar */
+    --sidebar-background: 220 14% 96%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 221 83% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 221 83% 53%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 0 100% 50%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 0 100% 50%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Dark mode red colors */
+    --red-primary: 0 100% 50%;
+    --red-light: 0 100% 50%;
+    --red-dark: 0 100% 50%;
+    --red-muted: 0 100% 20%;
+
+    --border: 217 32.6% 17.5%;
+    --input: 217 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 210 40% 98%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 217 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 32.6% 17.5%;
+    --sidebar-ring: 212.7 26.8% 83.9%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Skeleton Loading Animation */
+  .skeleton {
+    @apply relative overflow-hidden bg-gray-200 dark:bg-gray-800;
+  }
+  .skeleton::after {
+    @apply absolute inset-0 -translate-x-full;
+    content: '';
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.05), transparent);
+    animation: shimmer 1.5s infinite;
+  }
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Gradient Border (cross-browser fix) */
+  .gradient-border {
+    position: relative;
+    @apply rounded-[var(--radius)];
+  }
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    padding: 2px;
+    background: var(--gradient-primary);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+
+  /* Red Gradient Border */
+  .gradient-border-red {
+    position: relative;
+    @apply rounded-[var(--radius)];
+  }
+  .gradient-border-red::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    padding: 2px;
+    background: var(--gradient-red);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .gradient-border-red:hover::before {
+    opacity: 1;
+  }
+
+  /* Button Hover */
+  .btn-primary-hover {
+    @apply transition-all duration-300;
+  }
+  .btn-primary-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* Red Button Hover */
+  .btn-red-hover {
+    @apply transition-all duration-300;
+  }
+  .btn-red-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-red);
+  }
+
+  /* Card Hover */
+  .card-hover-animation {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  .card-hover-animation:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-blue);
+  }
+
+  /* Red Card Hover */
+  .card-red-hover-animation {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  .card-red-hover-animation:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-red);
+  }
+
+  /* Underline Animation */
+  .underline-animation {
+    position: relative;
+    display: inline-block;
+  }
+  .underline-animation::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: hsl(var(--primary));
+    transition: width 0.3s ease;
+  }
+  .underline-animation:hover::after {
+    width: 100%;
+  }
+
+  /* Red Underline Animation */
+  .underline-animation-red {
+    position: relative;
+    display: inline-block;
+  }
+  .underline-animation-red::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: hsl(var(--red-primary));
+    transition: width 0.3s ease;
+  }
+  .underline-animation-red:hover::after {
+    width: 100%;
+  }
+}
+
+@layer utilities {
+  /* Animations unified as utilities */
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 0.6s ease-out both;
+  }
+
+  @keyframes slideUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-slideUp {
+    animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes zoomIn {
+    0% { opacity: 0; transform: scale(0.95); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  .animate-zoomIn {
+    animation: zoomIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out both;
+  }
+
+  @keyframes pulseSlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+  }
+  .animate-pulseSlow {
+    animation: pulseSlow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .animate-rotate {
+    animation: rotate 1.5s linear infinite;
+  }
+
+  @keyframes bounceSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  .animate-bounceSlow {
+    animation: bounceSlow 3s infinite;
+  }
+
+  @keyframes heroReveal {
+    0% { 
+      transform: scale(1.1);
+      opacity: 0;
+    }
+    100% { 
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  .animate-heroReveal {
+    animation: heroReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes contentSlideUp {
+    0% { 
+      transform: translateY(60px);
+      opacity: 0;
+    }
+    100% { 
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  .animate-contentSlideUp {
+    animation: contentSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  }
+
+  @keyframes gradientSweep {
+    0% { 
+      background-position: 200% center;
+    }
+    100% { 
+      background-position: 0% center;
+    }
+  }
+  .animate-gradientSweep {
+    animation: gradientSweep 2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes techGrid {
+    0% { 
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    50% {
+      opacity: 0.3;
+    }
+    100% { 
+      opacity: 0.1;
+      transform: translateY(0);
+    }
+  }
+  .animate-techGrid {
+    animation: techGrid 2s ease-out both;
+  }
+
+  /* Text color utilities for white and red */
+  .text-white {
+    color: hsl(0, 0%, 100%);
+  }
+  
+  .text-red {
+    color: hsl(var(--red-primary));
+  }
+  
+  .text-red-light {
+    color: hsl(var(--red-light));
+  }
+  
+  .text-red-dark {
+    color: hsl(var(--red-dark));
+  }
+  
+  .text-red-muted {
+    color: hsl(var(--red-muted));
+  }
+
+  /* Background color utilities for red */
+  .bg-red {
+    background-color: hsl(var(--red-primary));
+  }
+  
+  .bg-red-light {
+    background-color: hsl(var(--red-light));
+  }
+  
+  .bg-red-dark {
+    background-color: hsl(var(--red-dark));
+  }
+  
+  .bg-red-muted {
+    background-color: hsl(var(--red-muted));
+  }
+
+  /* Border color utilities for red */
+  .border-red {
+    border-color: hsl(var(--red-primary));
+  }
+  
+  .border-red-light {
+    border-color: hsl(var(--red-light));
+  }
+  
+  .border-red-dark {
+    border-color: hsl(var(--red-dark));
+  }
+
+  /* Ring color utilities for red */
+  .ring-red {
+    --ring-color: hsl(var(--red-primary));
+  }
+
+  /* Gradient text utilities */
+  .text-gradient-red {
+    background: var(--gradient-red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Hover effects for red elements */
+  .hover-text-red:hover {
+    color: hsl(var(--red-primary));
+  }
+
+  .hover-bg-red:hover {
+    background-color: hsl(var(--red-primary));
+  }
+
+  .hover-border-red:hover {
+    border-color: hsl(var(--red-primary));
+  }
+}
