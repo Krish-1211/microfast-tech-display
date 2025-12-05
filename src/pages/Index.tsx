@@ -17,6 +17,7 @@ import pbxImage from '@/assets/pbx-system.jpg';
 import cablingImage from '@/assets/network-cabling.jpg';
 import itImage from '@/assets/it-infrastructure.jpg';
 import posShowcase from '@/assets/pos-systems-showcase.jpg';
+import eocIpImage from '@/assets/eoc-ip-system.png';
 import Autoplay from 'embla-carousel-autoplay';
 
 const productValueProps = [
@@ -57,6 +58,17 @@ const productShowcaseSlides = [
       "CAT6/CAT7 certified",
       "Up to 100G fiber",
       "Lifetime workmanship"
+    ]
+  },
+  {
+    badge: "Upgrade Solution",
+    title: "VISIQON EOC-IP System",
+    description: "Upgrade analog camera systems to IP surveillance without replacing legacy coaxial cables. Transmit PoE power and ethernet data over coax.",
+    image: eocIpImage,
+    features: [
+      "ExPOE Technology",
+      "Power over Coax",
+      "Ethernet over Coax"
     ]
   }
 ];
