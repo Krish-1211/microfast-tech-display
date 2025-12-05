@@ -148,146 +148,141 @@ const Index = () => {
       <Header />
 
       {/* Hero Section */}
-      <LoadingWrapper
-        skeleton={<HeroSkeleton />}
-        delay={800}
-      >
-        <section className="pt-8 pb-20 lg:pt-12 lg:pb-28 bg-gradient-to-b from-background via-background to-muted/40">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center animate-contentSlideUp mb-8">
-              <p className="text-sm uppercase tracking-[0.6em] text-red-muted mb-4">
-                <SlideInText text="Premium Technology Solutions" delay={200} className="text-red" />
-              </p>
-              <h1 className="text-4xl lg:text-6xl font-bold text-red-primary leading-tight">
-                <TypewriterText
-                  text="MicroFast Tech"
-                  delay={100}
-                  speed={40}
-                  className="text-red-primary"
-                />
-              </h1>
-            </div>
+      <section className="pt-8 pb-20 lg:pt-12 lg:pb-28 bg-gradient-to-b from-background via-background to-muted/40">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center animate-contentSlideUp mb-8">
+            <p className="text-sm uppercase tracking-[0.6em] text-red-muted mb-4">
+              <SlideInText text="Premium Technology Solutions" delay={200} className="text-red" />
+            </p>
+            <h1 className="text-4xl lg:text-6xl font-bold text-red-primary leading-tight">
+              <TypewriterText
+                text="MicroFast Tech"
+                delay={100}
+                speed={40}
+                className="text-red-primary"
+              />
+            </h1>
+          </div>
 
-            <div className="mb-12 space-y-10">
-              <div className="max-w-6xl mx-auto">
-                <div className="relative rounded-[32px] border border-border/60 bg-white shadow-[0_40px_120px_rgba(15,23,42,0.14)] p-4 sm:p-8 overflow-hidden">
-                  <div className="absolute inset-x-8 top-0 h-24 bg-gradient-to-b from-red-primary/5 to-transparent pointer-events-none" />
-                  <div className="relative">
-                    <Carousel
-                      className="w-full"
-                      opts={{
-                        align: "start",
-                        loop: true,
-                      }}
-                      plugins={[
-                        Autoplay({
-                          delay: 6000,
-                        })
-                      ]}
-                      setApi={setShowcaseApi}
-                    >
-                      <CarouselContent className="-ml-2 sm:-ml-4">
-                        {productShowcaseSlides.map((slide, index) => (
-                          <CarouselItem key={slide.title} className="pl-2 sm:pl-4">
-                            <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 items-center">
-                              <div className="order-2 lg:order-1 space-y-6">
-                                <p className="text-xs uppercase tracking-[0.5em] text-muted-foreground">{slide.badge}</p>
-                                <div>
-                                  <h3 className="text-2xl sm:text-3xl font-bold text-red-primary mb-3">{slide.title}</h3>
-                                  <p className="text-base text-muted-foreground leading-relaxed">{slide.description}</p>
-                                </div>
-                                <div className="flex flex-wrap gap-3">
-                                  {slide.features.map((feature) => (
-                                    <span key={feature} className="inline-flex items-center gap-2 rounded-full border border-red-primary/30 bg-red-primary/5 px-4 py-1.5 text-sm font-medium text-red-dark">
-                                      <CheckCircle className="h-4 w-4 text-red-primary" />
-                                      {feature}
-                                    </span>
-                                  ))}
-                                </div>
-                                <Button variant="secondary" className="w-full sm:w-auto px-8 btn-red-hover">
-                                  <Link to="/catalog" className="flex items-center space-x-2">
-                                    <span className="text-red-primary">View Product Catalog</span>
-                                    <ArrowRight className="h-4 w-4 text-red-primary" />
-                                  </Link>
-                                </Button>
+          <div className="mb-12 space-y-10">
+            <div className="max-w-6xl mx-auto">
+              <div className="relative rounded-[32px] border border-border/60 bg-white shadow-[0_40px_120px_rgba(15,23,42,0.14)] p-4 sm:p-8 overflow-hidden">
+                <div className="absolute inset-x-8 top-0 h-24 bg-gradient-to-b from-red-primary/5 to-transparent pointer-events-none" />
+                <div className="relative">
+                  <Carousel
+                    className="w-full"
+                    opts={{
+                      align: "start",
+                      loop: true,
+                    }}
+                    plugins={[
+                      Autoplay({
+                        delay: 6000,
+                      })
+                    ]}
+                    setApi={setShowcaseApi}
+                  >
+                    <CarouselContent className="-ml-2 sm:-ml-4">
+                      {productShowcaseSlides.map((slide, index) => (
+                        <CarouselItem key={slide.title} className="pl-2 sm:pl-4">
+                          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 items-center">
+                            <div className="order-2 lg:order-1 space-y-6">
+                              <p className="text-xs uppercase tracking-[0.5em] text-muted-foreground">{slide.badge}</p>
+                              <div>
+                                <h3 className="text-2xl sm:text-3xl font-bold text-red-primary mb-3">{slide.title}</h3>
+                                <p className="text-base text-muted-foreground leading-relaxed">{slide.description}</p>
                               </div>
+                              <div className="flex flex-wrap gap-3">
+                                {slide.features.map((feature) => (
+                                  <span key={feature} className="inline-flex items-center gap-2 rounded-full border border-red-primary/30 bg-red-primary/5 px-4 py-1.5 text-sm font-medium text-red-dark">
+                                    <CheckCircle className="h-4 w-4 text-red-primary" />
+                                    {feature}
+                                  </span>
+                                ))}
+                              </div>
+                              <Button variant="secondary" className="w-full sm:w-auto px-8 btn-red-hover">
+                                <Link to="/catalog" className="flex items-center space-x-2">
+                                  <span className="text-red-primary">View Product Catalog</span>
+                                  <ArrowRight className="h-4 w-4 text-red-primary" />
+                                </Link>
+                              </Button>
+                            </div>
 
-                              <div className="order-1 lg:order-2">
-                                <div className="relative">
-                                  <div className="aspect-[5/3] sm:aspect-[16/9] rounded-[28px] overflow-hidden bg-gradient-to-br from-slate-50 to-slate-200 shadow-2xl">
-                                    <img
-                                      src={slide.image}
-                                      alt={slide.title}
-                                      className="w-full h-full object-cover"
-                                      loading={index === 0 ? "eager" : "lazy"}
-                                    />
-                                  </div>
-                                  <div className="absolute inset-4 rounded-[24px] border border-white/70 pointer-events-none" />
-                                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white px-6 py-3 rounded-full shadow-xl text-sm font-semibold text-muted-foreground uppercase tracking-[0.5em] hidden sm:block">
-                                    {slide.badge}
-                                  </div>
+                            <div className="order-1 lg:order-2">
+                              <div className="relative">
+                                <div className="aspect-[5/3] sm:aspect-[16/9] rounded-[28px] overflow-hidden bg-gradient-to-br from-slate-50 to-slate-200 shadow-2xl">
+                                  <img
+                                    src={slide.image}
+                                    alt={slide.title}
+                                    className="w-full h-full object-cover"
+                                    loading={index === 0 ? "eager" : "lazy"}
+                                  />
+                                </div>
+                                <div className="absolute inset-4 rounded-[24px] border border-white/70 pointer-events-none" />
+                                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white px-6 py-3 rounded-full shadow-xl text-sm font-semibold text-muted-foreground uppercase tracking-[0.5em] hidden sm:block">
+                                  {slide.badge}
                                 </div>
                               </div>
                             </div>
-                          </CarouselItem>
-                        ))}
-                      </CarouselContent>
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
 
-                      <CarouselPrevious className="hidden md:flex left-6 top-1/2 -translate-y-1/2 bg-white border border-border/60 text-red-primary hover:bg-red-primary hover:text-white shadow-xl" />
-                      <CarouselNext className="hidden md:flex right-6 top-1/2 -translate-y-1/2 bg-white border border-border/60 text-red-primary hover:bg-red-primary hover:text-white shadow-xl" />
-                    </Carousel>
+                    <CarouselPrevious className="hidden md:flex left-6 top-1/2 -translate-y-1/2 bg-white border border-border/60 text-red-primary hover:bg-red-primary hover:text-white shadow-xl" />
+                    <CarouselNext className="hidden md:flex right-6 top-1/2 -translate-y-1/2 bg-white border border-border/60 text-red-primary hover:bg-red-primary hover:text-white shadow-xl" />
+                  </Carousel>
 
-                    <div className="mt-10 flex flex-col items-center gap-4">
-                      <div className="flex items-center gap-2">
-                        {productShowcaseSlides.map((slide, index) => (
-                          <button
-                            key={slide.title}
-                            onClick={() => showcaseApi?.scrollTo(index)}
-                            className={`h-2 rounded-full transition-all duration-300 ${activeShowcase === index ? "w-12 bg-red-primary" : "w-6 bg-muted"}`}
-                            aria-label={`Go to ${slide.title}`}
-                          />
-                        ))}
-                      </div>
-                      <p className="text-xs uppercase tracking-[0.5em] text-muted-foreground">
-                        {String(activeShowcase + 1).padStart(2, '0')} / {String(productShowcaseSlides.length).padStart(2, '0')}
-                      </p>
+                  <div className="mt-10 flex flex-col items-center gap-4">
+                    <div className="flex items-center gap-2">
+                      {productShowcaseSlides.map((slide, index) => (
+                        <button
+                          key={slide.title}
+                          onClick={() => showcaseApi?.scrollTo(index)}
+                          className={`h-2 rounded-full transition-all duration-300 ${activeShowcase === index ? "w-12 bg-red-primary" : "w-6 bg-muted"}`}
+                          aria-label={`Go to ${slide.title}`}
+                        />
+                      ))}
                     </div>
+                    <p className="text-xs uppercase tracking-[0.5em] text-muted-foreground">
+                      {String(activeShowcase + 1).padStart(2, '0')} / {String(productShowcaseSlides.length).padStart(2, '0')}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="max-w-3xl mx-auto text-center animate-contentSlideUp">
-              <p className="text-xl lg:text-2xl text-muted-foreground font-bold mb-4">
-                <FadeInText
-                  text="Surveillance • PBX • Structured Cabling • IT Systems"
-                  delay={800}
-                  className="text-muted-foreground"
-                />
-              </p>
-              <p className="text-lg text-muted-foreground/90 mb-8 font-medium animate-fadeInUp" style={{ animationDelay: '1.2s' }}>
-                Secure your business, connect every device, and simplify communications with turnkey systems delivered, installed, and supported by MicroFast.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fadeInUp mb-12" style={{ animationDelay: '1.6s' }}>
-                <Button size="lg" variant="secondary" className="text-lg px-8 btn-red-hover">
-                  <Link to="/services" className="flex items-center space-x-2">
-                    <span className="text-red-primary">Explore Services</span>
-                    <ArrowRight className="h-5 w-5 text-red-primary" />
-                  </Link>
-                </Button>
-              </div>
+          <div className="max-w-3xl mx-auto text-center animate-contentSlideUp">
+            <p className="text-xl lg:text-2xl text-muted-foreground font-bold mb-4">
+              <FadeInText
+                text="Surveillance • PBX • Structured Cabling • IT Systems"
+                delay={800}
+                className="text-muted-foreground"
+              />
+            </p>
+            <p className="text-lg text-muted-foreground/90 mb-8 font-medium animate-fadeInUp" style={{ animationDelay: '1.2s' }}>
+              Secure your business, connect every device, and simplify communications with turnkey systems delivered, installed, and supported by MicroFast.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fadeInUp mb-12" style={{ animationDelay: '1.6s' }}>
+              <Button size="lg" variant="secondary" className="text-lg px-8 btn-red-hover">
+                <Link to="/services" className="flex items-center space-x-2">
+                  <span className="text-red-primary">Explore Services</span>
+                  <ArrowRight className="h-5 w-5 text-red-primary" />
+                </Link>
+              </Button>
+            </div>
 
-              <div className="flex flex-wrap justify-center items-center gap-6 text-xs sm:text-sm uppercase tracking-[0.5em] text-red-primary font-semibold text-center">
-                {productValueProps.map((value) => (
-                  <span key={value} className="text-[0.7rem] sm:text-xs tracking-[0.3em] text-muted-foreground font-semibold">
-                    {value}
-                  </span>
-                ))}
-              </div>
+            <div className="flex flex-wrap justify-center items-center gap-6 text-xs sm:text-sm uppercase tracking-[0.5em] text-red-primary font-semibold text-center">
+              {productValueProps.map((value) => (
+                <span key={value} className="text-[0.7rem] sm:text-xs tracking-[0.3em] text-muted-foreground font-semibold">
+                  {value}
+                </span>
+              ))}
             </div>
           </div>
-        </section>
-      </LoadingWrapper>
+        </div>
+      </section>
 
       {/* Services Section */}
       <section id="services" className="py-20 bg-secondary/30">

@@ -7,11 +7,11 @@ interface LoadingWrapperProps {
   className?: string;
 }
 
-export const LoadingWrapper = ({ 
-  children, 
-  skeleton, 
+export const LoadingWrapper = ({
+  children,
+  skeleton,
   delay = 1000,
-  className = "" 
+  className = ""
 }: LoadingWrapperProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -26,11 +26,11 @@ export const LoadingWrapper = ({
   return (
     <div className={`transition-all duration-500 ${className}`}>
       {isLoading ? (
-        <div className="animate-fadeIn">
+        <div className="animate-fadeIn h-full">
           {skeleton}
         </div>
       ) : (
-        <div className="animate-fadeInUp">
+        <div className="animate-fadeInUp h-full">
           {children}
         </div>
       )}
@@ -38,13 +38,13 @@ export const LoadingWrapper = ({
   );
 };
 
-export const StaggeredLoadingWrapper = ({ 
-  children, 
-  skeleton, 
+export const StaggeredLoadingWrapper = ({
+  children,
+  skeleton,
   delay = 500,
   staggerDelay = 200,
   index = 0,
-  className = "" 
+  className = ""
 }: LoadingWrapperProps & { staggerDelay?: number; index?: number }) => {
   const [isLoading, setIsLoading] = useState(true);
   const totalDelay = delay + (index * staggerDelay);
@@ -60,11 +60,11 @@ export const StaggeredLoadingWrapper = ({
   return (
     <div className={`transition-all duration-500 ${className}`}>
       {isLoading ? (
-        <div className="animate-fadeIn">
+        <div className="animate-fadeIn h-full">
           {skeleton}
         </div>
       ) : (
-        <div className="animate-slideUp" style={{ animationDelay: `${index * 100}ms` }}>
+        <div className="animate-slideUp h-full" style={{ animationDelay: `${index * 100}ms` }}>
           {children}
         </div>
       )}

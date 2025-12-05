@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Shield, Eye, Smartphone, Brain, Clock, Monitor, Camera, Lock } from 'lucide-react';
+import { Shield, Eye, Smartphone, Brain, Clock, Monitor, Camera, Lock, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import Header from '@/components/Header';
@@ -9,6 +9,7 @@ import { LoadingWrapper, StaggeredLoadingWrapper } from '@/components/LoadingWra
 import { ServiceCardSkeleton } from '@/components/LoadingSkeletons';
 import { TypewriterText, FadeInText } from '@/components/AnimatedText';
 import cctvImage from '@/assets/cctv-system.jpg';
+import eocIpImage from '@/assets/eoc-ip-system.png';
 
 const CCTVSurveillance = () => {
   const features = [
@@ -214,6 +215,59 @@ const CCTVSurveillance = () => {
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* EOC-IP Upgrade System Section */}
+      <section className="py-20 bg-secondary/30">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="lg:w-1/2 animate-fadeInLeft order-2 lg:order-1">
+              <div className="relative rounded-lg overflow-hidden shadow-2xl border border-red-primary/20 bg-white p-4">
+                <img
+                  src={eocIpImage}
+                  alt="VISIQON EOC-IP Camera System Diagram"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            </div>
+            <div className="lg:w-1/2 animate-fadeInRight order-1 lg:order-2">
+              <h2 className="text-3xl lg:text-4xl font-bold text-red-primary mb-6">
+                Upgrade to IP Surveillance
+                <span className="block text-xl text-muted-foreground mt-2 font-normal">Without Replacing Coaxial Cables</span>
+              </h2>
+              <p className="text-lg text-muted-foreground mb-6">
+                The <span className="font-bold text-foreground">VISIQON EOC-IP Camera system</span> combines Power over Coax (PoC)
+                and Ethernet over Coax (EOC) technology to revolutionize your security upgrade.
+              </p>
+              <div className="space-y-6">
+                <div className="bg-background p-6 rounded-lg border border-border shadow-sm">
+                  <h3 className="text-xl font-semibold text-red-dark mb-3 flex items-center">
+                    <Zap className="h-5 w-5 mr-2 text-red-primary" />
+                    Proprietary ExPOE Technology
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Designed to transmit both PoE power and ethernet data over coaxial cables,
+                    eliminating the need for rewiring.
+                  </p>
+                </div>
+
+                <ul className="space-y-3">
+                  {[
+                    "Upgrade analog systems to IP surveillance instantly",
+                    "Save significant costs on new cabling & labor",
+                    "Utilize existing RG59 coaxial infrastructure",
+                    "Long-distance transmission support"
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-red-primary rounded-full" />
+                      <span className="text-foreground font-medium">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>

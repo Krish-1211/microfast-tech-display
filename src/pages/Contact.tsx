@@ -173,7 +173,7 @@ ${formData.projectDetails}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {contactInfo.map((info, index) => (
               <StaggeredLoadingWrapper
                 key={index}
@@ -181,6 +181,7 @@ ${formData.projectDetails}
                 delay={800}
                 staggerDelay={200}
                 index={index}
+                className="h-full"
               >
                 <Card
                   className="h-full text-center hover:shadow-lg transition-shadow cursor-pointer card-red-hover-animation gradient-border-red"
