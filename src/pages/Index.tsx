@@ -20,11 +20,7 @@ import posShowcase from '@/assets/pos-systems-showcase.jpg';
 import eocIpImage from '@/assets/eoc-ip-system.png';
 import Autoplay from 'embla-carousel-autoplay';
 
-const productValueProps = [
-  "Fast Shipping",
-  "3 Year Guarantee",
-  "Secure Checkout"
-];
+
 
 const productShowcaseSlides = [
   {
@@ -285,13 +281,7 @@ const Index = () => {
               </Button>
             </div>
 
-            <div className="flex flex-wrap justify-center items-center gap-6 text-xs sm:text-sm uppercase tracking-[0.5em] text-red-primary font-semibold text-center">
-              {productValueProps.map((value) => (
-                <span key={value} className="text-[0.7rem] sm:text-xs tracking-[0.3em] text-muted-foreground font-semibold">
-                  {value}
-                </span>
-              ))}
-            </div>
+
           </div>
         </div>
       </section>
