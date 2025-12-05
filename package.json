@@ -9,7 +9,7 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "serve": "serve -s dist -l ${PORT:-3000}"
+    "serve": "node server.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -49,6 +49,7 @@
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "esbuild": "0.25.0",
+    "express": "^5.2.1",
     "input-otp": "^1.4.2",
     "lovable-tagger": "^1.1.11",
     "lucide-react": "^0.462.0",
