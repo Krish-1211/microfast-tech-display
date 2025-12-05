@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: microfast-tech-display
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
