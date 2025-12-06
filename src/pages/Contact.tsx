@@ -32,30 +32,49 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+    if (!accessKey) {
+      toast({
+        title: "Configuration Error",
+        description: "Contact form is not configured. Please contact support.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      // Construct mailto link
-      const subject = `New Contact Request from ${formData.firstName} ${formData.lastName}`;
-      const body = `
-Name: ${formData.firstName} ${formData.lastName}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Company: ${formData.company}
-Industry: ${formData.industry}
-Service Interest: ${formData.serviceInterest}
-Timeline: ${formData.timeline}
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          industry: formData.industry,
+          service_interest: formData.serviceInterest,
+          timeline: formData.timeline,
+          message: formData.projectDetails,
+          subject: `New Contact Request from ${formData.firstName} ${formData.lastName}`,
+          from_name: "MicroFast Tech Site"
+        })
+      });
 
-Project Details:
-${formData.projectDetails}
-      `.trim();
+      const result = await response.json();
 
-      const mailtoLink = `mailto:sales@microfasttech.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-      // Open email client
-      window.location.href = mailtoLink;
+      if (!result.success) {
+        throw new Error(result.message || "Failed to send message");
+      }
 
       toast({
-        title: "Opening Email Client",
-        description: "Please send the pre-filled email to complete your request.",
+        title: "Message Sent!",
+        description: "We've received your request and will get back to you shortly.",
       });
 
       // Reset form
@@ -71,10 +90,10 @@ ${formData.projectDetails}
         timeline: ''
       });
     } catch (error) {
-      console.error('Error opening email client:', error);
+      console.error('Error sending email:', error);
       toast({
         title: "Error",
-        description: "Failed to open email client. Please try again or contact us directly.",
+        description: "Failed to send message. Please try again or contact us directly.",
         variant: "destructive",
       });
     } finally {
