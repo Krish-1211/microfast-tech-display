@@ -25,6 +25,7 @@ const Header = () => {
           { name: 'PBX Systems', href: '/pbx-systems' },
           { name: 'Network Cabling', href: '/network-cabling' },
           { name: 'IT Infrastructure', href: '/it-infrastructure' },
+          { name: 'Web Development', href: '/web-development' },
         ]
       },
       {

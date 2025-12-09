@@ -20,6 +20,7 @@ import GasStations from "./pages/industries/GasStations";
 import StartProject from "./pages/StartProject";
 import NotFound from "./pages/NotFound";
 import POSIntegration from "./pages/POSIntegration";
+import WebDevelopment from "./pages/WebDevelopment";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/pbx-systems" element={<PBXSystems />} />
             <Route path="/network-cabling" element={<NetworkCabling />} />
             <Route path="/it-infrastructure" element={<ITInfrastructure />} />
+            <Route path="/web-development" element={<WebDevelopment />} />
             <Route path="/about" element={<About />} />
             <Route path="/industries/gas-stations" element={<GasStations />} />
             <Route path="/industries/restaurants" element={<Restaurants />} />
