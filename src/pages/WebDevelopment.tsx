@@ -152,14 +152,6 @@ const WebDevelopment = () => {
                             <Button size="lg" variant="secondary" className="text-lg px-8 py-6 h-auto btn-red-hover shadow-xl shadow-red-500/10" asChild>
                                 <Link to="/contact" className="text-red-primary font-bold">Start Your Project</Link>
                             </Button>
-                            <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 p-2 pr-4 rounded-full">
-                                <div className="bg-green-500/20 p-1.5 rounded-full">
-                                    <CheckCircle2 className="h-5 w-5 text-green-400" />
-                                </div>
-                                <span className="text-white/90 text-sm font-medium">
-                                    Managed by <strong>Krish Kavathia</strong>
-                                </span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -215,7 +207,7 @@ const WebDevelopment = () => {
                                     Technical Excellence
                                 </h3>
                                 <p className="text-muted-foreground relative z-10">
-                                    "Every project is personally overseen by <strong>Krish Kavathia</strong>, ensuring that we don't just meet industry standards, but exceed them. We focus on clean code, scalability, and user experience."
+                                    "Our projects are overseen by experienced technical leads, ensuring that we don't just meet industry standards, but exceed them. We focus on clean code, scalability, and user experience."
                                 </p>
                             </div>
                         </div>
@@ -239,10 +231,10 @@ const WebDevelopment = () => {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* Our Process */}
-            <section className="py-24 bg-secondary/30">
+            < section className="py-24 bg-secondary/30" >
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl lg:text-4xl font-bold mb-4">Our Development Process</h2>
@@ -270,10 +262,10 @@ const WebDevelopment = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* Technologies Grid */}
-            <section className="py-24 bg-background">
+            < section className="py-24 bg-background" >
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl lg:text-4xl font-bold mb-4">Technologies We Master</h2>
@@ -291,10 +283,10 @@ const WebDevelopment = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* Industry Solutions */}
-            <section className="py-24 bg-gradient-to-b from-secondary/20 to-background">
+            < section className="py-24 bg-gradient-to-b from-secondary/20 to-background" >
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl lg:text-4xl font-bold mb-4">Industry Solutions</h2>
@@ -329,10 +321,10 @@ const WebDevelopment = () => {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* CTA Section */}
-            <section className="py-24 bg-gradient-to-r from-primary via-primary to-blue-600 relative overflow-hidden">
+            < section className="py-24 bg-gradient-to-r from-primary via-primary to-blue-600 relative overflow-hidden" >
                 <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
                 <div className="container mx-auto px-4 text-center relative z-10">
                     <h2 className="text-3xl lg:text-5xl font-bold text-white mb-6">
@@ -350,10 +342,10 @@ const WebDevelopment = () => {
                         </Button>
                     </div>
                 </div>
-            </section>
+            </section >
 
             <Footer />
-        </div>
+        </div >
     );
 };
 
